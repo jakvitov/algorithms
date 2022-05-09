@@ -19,22 +19,6 @@ def merge(firstArray, secondArray):
     finalArray.extend(secondArray);
     return finalArray;
 
-def merge(firstArray, secondArray):
-    finalArray = [];
-    #We until one of the arrays is empty, add the smaller element to the final array and pop him from the list
-    while (len(firstArray) > 0 and len(secondArray) > 0):
-        if (firstArray[0] <= secondArray[0]):
-            finalArray.append(firstArray[0]);
-            firstArray.pop(0);
-        else:
-            finalArray.append(secondArray[0]);
-            secondArray.pop(0);
-
-    #Now we append the rest in the larger array, that
-    finalArray.extend(firstArray);
-    finalArray.extend(secondArray);
-    return finalArray;
-
 firstArray = [0, 1, 2, 5, 8];
 secondArray = [-1, 2, 3, 5, 8];
 

@@ -51,4 +51,4 @@ def testTime(size):
     time4 = time.time();
     print("Python sort - %s" % (time4 - time3));
 
-testTime(20000);
+testTime(10000);
