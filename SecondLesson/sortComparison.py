@@ -27,6 +27,38 @@ def selectSort(array):
         #Python syntax for swapping of array elements, in lower level languages done with temporary element
         (array[i], array[lastMin]) = (array[lastMin], array[i]);
 
+def merge(firstArray, secondArray):
+    finalArray = [];
+    #We until one of the arrays is empty, add the smaller element to the final array and pop him from the list
+    while (len(firstArray) > 0 and len(secondArray) > 0):
+        if (firstArray[0] <= secondArray[0]):
+            finalArray.append(firstArray[0]);
+            firstArray.pop(0);
+        else:
+            finalArray.append(secondArray[0]);
+            secondArray.pop(0);
+
+    #Now we append the rest in the larger array, that
+    finalArray.extend(firstArray);
+    finalArray.extend(secondArray);
+    return finalArray;
+
+def mergeSort(array):
+    #While the size of the array is larger that one we call recursively the merge sort on subarrays
+    #[0-mid] and [mid+1 - end]
+    if (len(array) > 1):
+        mid = len(array)//2;
+
+        first = array[:mid];
+        second = array[mid:];
+
+        first = mergeSort(first);
+        second = mergeSort(second);
+        #Return the merged arrays - linear time
+        return merge(first, second);
+    #If the size of the array is 1 -> array of size 1 is already sorted
+    return array;
+
 #Generate array filled with random values based on the given lenght
 def dataGen(size):
     array = [];
@@ -43,12 +75,15 @@ def testTime(size):
     time1 = time.time();
     selectSort(array.copy());
     time2 = time.time();
-    print("Select sort - %s" % (time2 - time1));
-    bubbleSort(array.copy());
+    #print("Select sort - %s" % (time2 - time1));
+    #bubbleSort(array.copy());
     time3 = time.time();
     print("Bubble sort - %s" % (time3 - time2));
     array.copy().sort();
     time4 = time.time();
     print("Python sort - %s" % (time4 - time3));
+    mergeSort(array.copy());
+    time5 = time.time();
+    print("Merge sort - %s" % (time5 - time4));
 
 testTime(10000);
