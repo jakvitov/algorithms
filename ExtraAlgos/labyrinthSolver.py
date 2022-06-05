@@ -83,6 +83,6 @@ class labyrinth():
         f.close();
 
 
-labyr = labyrinth("./LabyrinthTests/labyrinth3");
+labyr = labyrinth("./LabyrinthTests/labyrinth4");
 labyr.search();
 
